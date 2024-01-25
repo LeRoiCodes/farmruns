@@ -8,7 +8,7 @@ import storeImg from '../../images/store-add-01.png'
 
 function HomeNav() {
   return (
-    <header className='mt-[20px] w-[95%] m-auto '>
+    <header className='mt-[20px] w-[95%] m-auto  '>
     <nav className="bg-white border-gray-200 py-2.5 text-[32px] font-nanum ">
         <div className="flex flex-wrap justify-between items-center ">
             <Link to="/" className="flex items-center">
