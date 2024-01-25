@@ -1,10 +1,12 @@
 import React from 'react'
-import HomeNav from '../components/HomeNav'
+import HomeNav from '../components/HomeComponents/HomeNav'
+import HomeHeroSection from '../components/HomeComponents/HomeHeroSection'
 
 function HomePage() {
   return (
-    <div>
+    <div className="xl:w-[90%] xl:mx-auto">
         <HomeNav />
+        <HomeHeroSection />
     </div>
   )
 }
