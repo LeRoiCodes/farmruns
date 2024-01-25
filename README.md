@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+<p align="center">
+<img src="https://github.com/zuri-training/TeamGorilla-Auth_wiki/blob/main/FrontEn/src/assets/images/Authwiki.png" align="center" width="50%">
+</p>
+<p align="center">FarmRuns is an agriculture-based platform that facilitates a hub where consumers and farmers can interact. This hub allows consumers and retailers to share, communicate and purchase farm produce from the comfort of their homes..</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">
+  <a href="/">Visit Farmruns</a>
+</h3>
 
-## Available Scripts
+<p align="center"> team 17  | DevCareer Project Phase  | 25-1-2024 </p>
 
-In the project directory, you can run:
+<p align="center">
+<img src="https://forthebadge.com/images/badges/open-source.svg">
+<img src="https://forthebadge.com/images/badges/built-with-love.svg">
+</p>
 
-### `npm start`
+<p align="center">
+<img src="./FrontEnd/src/assets/images/git_hero_image.png" align="center" width="100%">
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Project Status
 
-### `npm test`
+### 🛠 Ongoing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How to Contribute
+For Group 17 members, follow this steps to collaborate:
 
-### `npm run build`
+```html
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Visit the Repository to the Project on Github Website:
+  "https://github.com/LeRoiCodes/farmruns.git"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Fork the repository:
+  Click the "Fork" button on the upper right corner of the Repo page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Make a local clone:
+  Click on the "Code" button on the Repo page 
+  Copy the URL for the forked Repo
+  "https://github.com/LeRoiCodes/farmruns.git"
+  Create a Folder on your Local machine / Computer for the project Workspace
+  Open Command prompt / Terminal in the same folder location
 
-### `npm run eject`
+In your Terminal, type:
+  git clone https://github.com/LeRoiCodes/farmruns.git
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Open terminal and set upstream branch:
+  git remote add upstream https://github.com/LeRoiCodes/farmruns.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Pull upstream to get up to date with the original repo:
+  git pull upstream main
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create a new branch for the task you are working on:
+  git checkout -b branchName 
+  (Make sure your branchName is descriptive in context to the feature you are working on) 
+  (Also be sure to check which branch you are using git status before you begin working)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+When you are done with your task, do:
+  git add
 
-## Learn More
+Commit your work with a message:
+ git commit -m "message" 
+ (write a message that will make insight on what you pushed)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To avoid conflicts:
+  git pull upstream main
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Then push your branch:
+  git push origin branchName
+  This creates the branch remotely and pushes to that branch on the Github
 
-### Code Splitting
+Create a new pull request:
+  Go to Github and create a new pull request to the main branch. 
+  It will then be reviewed and merged into the master.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
 
-### Analyzing the Bundle Size
+# Team Members
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. [Brandon Armand Nyamkimbi](https://github.com/Brandonarmand96)
+2. [Gogo Ibimina Felix](https://github.com/IbiminaFG)
+3. [OORJI CECILIA O.](https://github.com/vivcis)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
