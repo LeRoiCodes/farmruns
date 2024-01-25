@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({
+      Email: email,
+      password: password,
+    });
+
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <section className="w-screen relative">
       <div className="h-screen w-screen flex justify-between">
@@ -18,12 +32,17 @@ function Login() {
             <span className="font-nanum text-[32px] font-normal">Farmruns</span>
           </Link>
 
-          <form className="flex flex-col w-full max-lg:items-center">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col w-full max-lg:items-center"
+          >
             <h1 className="font-oswald text-[32px] my-5">
               Sign in to your account
             </h1>
             <div className="flex flex-col gap-[21px] w-full lg:max-w-[600px]">
               <input
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
                 type="email"
                 name="email"
                 id="email"
@@ -31,6 +50,8 @@ function Login() {
                 className="px-3 py-2 sm:p-3 bg-input-bg rounded-[10px] sm:rounded-[16px] w-full text-sm sm:text-lg placeholder:color-placeholder font-oswald font-light outline-none"
               />
               <input
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
                 type="password"
                 name="password"
                 id="password"
