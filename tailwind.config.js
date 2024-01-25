@@ -17,6 +17,13 @@ module.exports = {
           900: "#1e3a8a",
           950: "#172554",
         },
+        green: {
+          10: "#55A349",
+        },
+        input: {
+          bg: "#DBDBDB",
+          placeholder: "#868686",
+        },
       },
     },
     fontFamily: {
