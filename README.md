@@ -1,5 +1,6 @@
 <p align="center">
-<img src="https://github.com/zuri-training/TeamGorilla-Auth_wiki/blob/main/FrontEn/src/assets/images/Authwiki.png" align="center" width="50%">
+<img src="./src/images/Group 1.png" align="center">
+  
 </p>
 <p align="center">FarmRuns is an agriculture-based platform that facilitates a hub where consumers and farmers can interact. This hub allows consumers and retailers to share, communicate and purchase farm produce from the comfort of their homes..</p>
 
@@ -7,7 +8,7 @@
   <a href="/">Visit Farmruns</a>
 </h3>
 
-<p align="center"> team 17  | DevCareer Project Phase  | 25-1-2024 </p>
+<p align="center"> team 17  | DevCareer Project Phase  | 20-1-2024 </p>
 
 <p align="center">
 <img src="https://forthebadge.com/images/badges/open-source.svg">
@@ -15,8 +16,9 @@
 </p>
 
 <p align="center">
-<img src="./FrontEnd/src/assets/images/git_hero_image.png" align="center" width="100%">
+<img src="./public/assets/screencapture-localhost-3000-2024-01-25-17_59_43 (1).png" align="center" width="100%">
 </p>
+
 
 
 ### Project Status
