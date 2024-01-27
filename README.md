@@ -5,7 +5,7 @@
 <p align="center">FarmRuns is an agriculture-based platform that facilitates a hub where consumers and farmers can interact. This hub allows consumers and retailers to share, communicate and purchase farm produce from the comfort of their homes..</p>
 
 <h3 align="center">
-  <a href="/">Visit Farmruns</a>
+  <a href="https://farmruns.vercel.app/">Visit Farmruns</a>
 </h3>
 
 <p align="center"> team 17  | DevCareer Project Phase  | 20-1-2024 </p>
