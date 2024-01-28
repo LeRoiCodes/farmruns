@@ -19,6 +19,7 @@ module.exports = {
         },
         green: {
           10: "#55A349",
+          20: "#D3E7D0",
         },
         input: {
           bg: "#DBDBDB",

@@ -18,3 +18,25 @@ input[type="radio"]:checked + label {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.active {
+  background-color: #55a349;
+  color: white;
+}
+
+.active:hover {
+  color: black;
+}
+
+.customer_box {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 176px;
+  height: 82px;
+  flex-shrink: 0;
+}
+
+.unwanted_scroll::-webkit-scrollbar {
+  display: none;
+}
