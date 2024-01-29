@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import RootLayout from "./components/layouts/RootLayout";
+import BlogPage from "./pages/BlogPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/dashboard" element={<RootLayout />}>
         <Route index element={<Dashboard />} />
       </Route>
+      <Route path="/blog" element={<BlogPage />} />
     </Route>
   )
 );
