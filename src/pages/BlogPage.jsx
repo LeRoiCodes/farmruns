@@ -9,7 +9,7 @@ function BlogPage() {
     const image = image1
   return (
     <div>
-        <header className="bg-cover bg-center h-screen" style={{backgroundImage: `url(${image})`}}>
+        <header className="bg-cover bg-center h-screen font-oswald" style={{backgroundImage: `url(${image})`}}>
            <div className='h-full w-full bg-opacity-40 bg-black'>
            <BlogNav />
             <div className='w-[95%] m-auto font-oswald text-white'>
