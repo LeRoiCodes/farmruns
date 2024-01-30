@@ -48,7 +48,7 @@ const links = [
 
 const Sidebar = () => {
   return (
-    <aside className="md:w-[248px] h-screen bg-green-20 flex flex-col overflow-y-scroll unwanted_scroll">
+    <aside className="md:w-[248px] h-screen hidden bg-green-20 md:flex flex-col overflow-y-scroll unwanted_scroll">
       <div className="flex px-2">
         <Link to="/" className="flex gap-2 items-center">
           <img

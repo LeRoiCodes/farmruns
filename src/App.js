@@ -8,9 +8,9 @@ import {
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Dashboard from "./pages/Dashboard";
 import RootLayout from "./components/layouts/RootLayout";
 import BlogPage from "./pages/BlogPage";
+import Home from "./pages/consumer/Home";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<RootLayout />}>
-        <Route index element={<Dashboard />} />
+        <Route index element={<Home />} />
       </Route>
       <Route path="/blog" element={<BlogPage />} />
     </Route>
