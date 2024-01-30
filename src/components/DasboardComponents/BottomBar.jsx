@@ -49,7 +49,7 @@ const links = [
 const BottomBar = () => {
   return (
     <div className="fixed bottom-0 w-screen md:hidden bg-green-20">
-      <ul className="flex justify-around px-2 md:pr-0 md:pl-4 font-oswald">
+      <ul className="flex justify-around px-2 py-1 font-oswald">
         {links.map((nav, index) => (
           <li key={index}>
             <NavLink
