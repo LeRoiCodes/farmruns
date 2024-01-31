@@ -1,6 +1,7 @@
 import React from 'react'
 import BlogPostCard from './BlogPostCard'
 import BlogProfile from './BlogProfile'
+import BlogSocials from './BlogSocials'
 
 function BlogSidebar() {
   return (
@@ -8,6 +9,7 @@ function BlogSidebar() {
       <div>
         <BlogPostCard />
         <BlogProfile />
+        <BlogSocials />
       </div>
     </div>
   )
