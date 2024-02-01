@@ -31,7 +31,7 @@ const Header = () => {
           </Link>
           <button className="flex justify-center items-center h-[48px] w-[48px] rounded-full overflow-hidden">
             <img
-              src="./assets/profile-pic.png"
+              src="../assets/profile-pic.png"
               alt="user profile"
               className="w-full h-full"
             />
