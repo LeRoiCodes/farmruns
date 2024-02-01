@@ -11,6 +11,7 @@
 //         <CgSearch className="text-2xl text-[#919191]" />
 //       </div>
 
+
 //       <div className="bg-white hidden sm:flex gap-1 items-center rounded-[10px] col-span-2 py-[10px] px-5">
 //         <CgSearch className="text-2xl text-[#919191]" />
 //         <input
@@ -41,5 +42,6 @@
 //     </div>
 //   );
 // };
+
 
 // export default Header;
