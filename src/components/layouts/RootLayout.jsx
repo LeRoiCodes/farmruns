@@ -6,7 +6,7 @@ import BottomBar from "../DasboardComponents/BottomBar";
 const RootLayout = () => {
   return (
     <section className="flex">
-      {/* <Sidebar /> */}
+      <Sidebar />
       <main className="w-full">
         <Outlet />
       </main>

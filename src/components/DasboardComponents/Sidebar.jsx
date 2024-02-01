@@ -1,12 +1,12 @@
-// import React from "react";
-// import { Link, NavLink } from "react-router-dom";
-// import { CiHome } from "react-icons/ci";
-// import { PiNotebookDuotone, PiShoppingCart } from "react-icons/pi";
-// import { LiaTruckMonsterSolid } from "react-icons/lia";
-// import { GoHeart } from "react-icons/go";
-// import { RiSettings3Line } from "react-icons/ri";
-// import { MdPowerSettingsNew } from "react-icons/md";
-// import { HiOutlineBriefcase } from "react-icons/hi";
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import { CiHome } from "react-icons/ci";
+import { PiNotebookDuotone, PiShoppingCart } from "react-icons/pi";
+import { LiaTruckMonsterSolid } from "react-icons/lia";
+import { GoHeart } from "react-icons/go";
+import { RiSettings3Line } from "react-icons/ri";
+import { MdPowerSettingsNew } from "react-icons/md";
+import { HiOutlineBriefcase } from "react-icons/hi";
 
 const links = [
   {
