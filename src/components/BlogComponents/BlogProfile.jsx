@@ -9,7 +9,7 @@ function BlogProfile() {
             <p className='text-2xl font-normal '>Susan Fletcher</p>
             <p className='text-xl font-light text-[#55A349]'>Certified Foodie</p>
         </div>
-        <p className='w-[300px] text-center font-light text-2xl mt-6'>I live for the edible pleasures life has to offer</p>
+        <p className='w-[300px] text-center font-light text-xl md:text-2xl mt-6'>I live for the edible pleasures life has to offer</p>
     </div>
   )
 }
