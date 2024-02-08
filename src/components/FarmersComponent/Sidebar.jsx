@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { CiHome } from "react-icons/ci";
-import { PiNotebookDuotone, PiShoppingCart } from "react-icons/pi";
-import { LiaTruckMonsterSolid } from "react-icons/lia";
-import { GoHeart } from "react-icons/go";
+import { PiNotebookDuotone } from "react-icons/pi";
+import { MdOutlineDiscount } from "react-icons/md";
+import { LiaShippingFastSolid } from "react-icons/lia";
 import { RiSettings3Line } from "react-icons/ri";
 import { MdPowerSettingsNew } from "react-icons/md";
 import { HiOutlineBriefcase } from "react-icons/hi";
@@ -11,37 +11,32 @@ import { HiOutlineBriefcase } from "react-icons/hi";
 const links = [
   {
     title: "Home",
-    link: "/dashboard/home",
+    link: "/farmer/home",
     icon: <CiHome />,
   },
   {
-    title: "My Blog",
-    link: "/dashboard/customer-blog",
+    title: "My Listings",
+    link: "/farmer/listings",
     icon: <PiNotebookDuotone />,
   },
   {
-    title: "Farmers Hub",
-    link: "/dashboard/farmers-hub",
-    icon: <LiaTruckMonsterSolid />,
-  },
-  {
-    title: "Shop",
-    link: "/dashboard/shop",
-    icon: <PiShoppingCart />,
-  },
-  {
     title: "Order History",
-    link: "/dashboard/order",
+    link: "/farmer/order",
     icon: <HiOutlineBriefcase />,
   },
   {
-    title: "Favourites",
-    link: "/dashboard/favourites",
-    icon: <GoHeart />,
+    title: "Discount Codes",
+    link: "/farmer/discount",
+    icon: <MdOutlineDiscount />,
+  },
+  {
+    title: "Shipping",
+    link: "/farmer/shipping",
+    icon: <LiaShippingFastSolid />,
   },
   {
     title: "Settings",
-    link: "/dashboard/settings",
+    link: "/farmer/settings",
     icon: <RiSettings3Line />,
   },
 ];

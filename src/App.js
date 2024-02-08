@@ -10,13 +10,21 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import RootLayout from "./components/layouts/RootLayout";
 import BlogPage from "./pages/BlogPage";
-import Home from "./pages/consumer/Home";
-import Blog from "./pages/consumer/Blog";
-import Favourites from "./pages/consumer/Favourites";
-import Shop from "./pages/consumer/Shop";
-import Order from "./pages/consumer/Order";
-import FarmersHub from "./pages/consumer/FarmersHub";
-import Settings from "./pages/consumer/Settings";
+import Home from "./pages/creator/Home";
+import FarmerHome from "./pages/farmer/FarmerHome";
+import Listings from "./pages/farmer/Listings";
+import FarmerOrder from "./pages/farmer/FarmerOrder";
+import FarmerDicount from "./pages/farmer/FarmerDiscount";
+import FarmerShipping from "./pages/farmer/FarmerShipping";
+import FarmerSettings from "./pages/farmer/FarmerSettings";
+import Blog from "./pages/creator/Blog";
+import Favourites from "./pages/creator/Favourites";
+import Shop from "./pages/creator/Shop";
+import Order from "./pages/creator/Order";
+import FarmersHub from "./pages/creator/FarmersHub";
+import Settings from "./pages/creator/Settings";
+import FarmersLayout from "./components/layouts/FarmersLayout";
+import ConsumerStore from "./pages/consumer/ConsumerStore";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +41,15 @@ const router = createBrowserRouter(
         <Route path="favourites" element={<Favourites />} />
         <Route path="settings" element={<Settings />} />
       </Route>
+      <Route path="/farmer" element={<FarmersLayout />}>
+        <Route path="home" element={<FarmerHome />} />
+        <Route path="listings" element={<Listings />} />
+        <Route path="order" element={<FarmerOrder />} />
+        <Route path="discount" element={<FarmerDicount />} />
+        <Route path="shipping" element={<FarmerShipping />} />
+        <Route path="settings" element={<FarmerSettings />} />
+      </Route>
+      <Route path="/consumer" element={<ConsumerStore />} />
       <Route path="/blog" element={<BlogPage />} />
     </Route>
   )
