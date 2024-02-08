@@ -8,6 +8,10 @@ module.exports = {
           10: "#55A349",
           20: "#D3E7D0",
         },
+        gray: {
+          5: "#F5F5F5",
+          10: "#7A7A7A",
+        },
         input: {
           bg: "#DBDBDB",
           placeholder: "#868686",
