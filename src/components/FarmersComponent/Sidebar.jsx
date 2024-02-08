@@ -21,22 +21,22 @@ const links = [
   },
   {
     title: "Order History",
-    link: "/order",
+    link: "/farmer/order",
     icon: <HiOutlineBriefcase />,
   },
   {
     title: "Discount Codes",
-    link: "/discount",
+    link: "/farmer/discount",
     icon: <MdOutlineDiscount />,
   },
   {
     title: "Shipping",
-    link: "/shipping",
+    link: "/farmer/shipping",
     icon: <LiaShippingFastSolid />,
   },
   {
     title: "Settings",
-    link: "/settings",
+    link: "/farmer/settings",
     icon: <RiSettings3Line />,
   },
 ];
