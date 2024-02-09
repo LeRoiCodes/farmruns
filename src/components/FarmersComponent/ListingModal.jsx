@@ -3,12 +3,30 @@ import { useModal } from "../../context/store";
 import { useState } from "react";
 import { BsUpload } from "react-icons/bs";
 
+// Function to covert to binary64
+const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
+
+
 const ListingModal = () => {
   const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [availablePeriod, setAvailablePeriod] = useState("");
+  const [category, setcategory] = useState("");
+  const [description, setDescription] = useState("");
 
   const { setShowListingModal } = useModal();
 
@@ -38,6 +56,12 @@ const ListingModal = () => {
 
   const handleCloseModal = () => {
     closeModal();
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setImageFile(base64);
   };
 
   return (
@@ -110,6 +134,26 @@ const ListingModal = () => {
               required
               value={availablePeriod}
               onChange={(e) => setAvailablePeriod(e.target.value)}
+            />
+          </div>
+          <div className="flex gap-4 w-full">
+            <input
+              type="text"
+              name="category"
+              placeholder="Category"
+              className="p-2 bg-gray-5 w-full font-oswald font-light border border-solid border-black rounded-lg outline-none"
+              required
+              value={category}
+              onChange={(e) => setcategory(e.target.value)}
+            />
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className="p-2 bg-gray-5 w-full font-oswald font-light border border-solid border-black rounded-lg outline-none"
+              required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="font-oswald flex justify-end gap-3">
