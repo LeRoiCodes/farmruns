@@ -1,41 +1,40 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { CiHome } from "react-icons/ci";
 import { PiNotebookDuotone } from "react-icons/pi";
 import { MdOutlineDiscount } from "react-icons/md";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { RiSettings3Line } from "react-icons/ri";
-import { MdPowerSettingsNew } from "react-icons/md";
 import { HiOutlineBriefcase } from "react-icons/hi";
 
 const links = [
   {
     title: "Home",
-    link: "/dashboard",
+    link: "/farmer/home",
     icon: <CiHome />,
   },
   {
     title: "My Listings",
-    link: "/dashboard/customer-blog",
+    link: "/farmer/listings",
     icon: <PiNotebookDuotone />,
   },
   {
     title: "Order History",
-    link: "/order",
+    link: "/farmer/order",
     icon: <HiOutlineBriefcase />,
   },
   {
     title: "Discount Codes",
-    link: "/discount",
+    link: "/farmer/discount",
     icon: <MdOutlineDiscount />,
   },
   {
     title: "Shipping",
-    link: "/shipping",
+    link: "/farmer/shipping",
     icon: <LiaShippingFastSolid />,
   },
   {
     title: "Settings",
-    link: "/settings",
+    link: "/farmer/settings",
     icon: <RiSettings3Line />,
   },
 ];

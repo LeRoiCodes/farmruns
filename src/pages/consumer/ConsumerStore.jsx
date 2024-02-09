@@ -65,13 +65,13 @@ const ConsumerStore = () => {
 
         {/* Main section */}
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-3 gap-4 mt-5">
           <div className="col-span-2 grid">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4">
               {listings.map((listing, index) => (
                 <div
                   key={index}
-                  className="relative shadow_card bg-white rounded-2xl p-6"
+                  className="relative flex flex-col shadow_card bg-white rounded-2xl p-6"
                 >
                   <div className="flex justify-between">
                     <div className="font-oswald">
@@ -88,7 +88,7 @@ const ConsumerStore = () => {
                       <GoHeartFill className="text-red-500" />
                     )}
                   </button>
-                  <div className="flex items center justify-between">
+                  <div className="flex mt-auto items-center justify-between">
                     <div className="flex gap-2 items-center">
                       <button
                         className="w-4 h-4 flex justify-center items-center rounded-md border border-solid border-black"
@@ -113,7 +113,9 @@ const ConsumerStore = () => {
               ))}
             </div>
           </div>
-          <div className="shadow_card bg-white rounded-xl">
+
+          {/* Cart */}
+          <div className="shadow_card hidden sm:block bg-white rounded-xl">
             <h2 className="font-oswald p-3 text-green-10">Cart</h2>
             <div>
               {listings.map((listing, index) => (
@@ -150,16 +152,16 @@ const ConsumerStore = () => {
                 </div>
               ))}
             </div>
-            <div>
-              <p>Total</p>
-              <p>#1,000</p>
+            <div className="flex items-center justify-between mt-5 px-3">
+              <p className="font-oswald">Total</p>
+              <p className="font-oswald">#1,000</p>
             </div>
 
-            <div>
-              <button className="font-oswald bg-green-10 text-white hover:bg-green-700 py-1">
+            <div className="flex flex-col gap-2 p-3">
+              <button className="w-full font-oswald bg-green-10 text-white hover:bg-green-700 py-1 rounded-lg">
                 Confirm Order
               </button>
-              <button className="font-oswald text-white shadow_card hover:bg-gray-5 py-1">
+              <button className=" w-full font-oswald shadow_card hover:bg-gray-5 py-1 rounded-lg">
                 Empty Cart
               </button>
             </div>
