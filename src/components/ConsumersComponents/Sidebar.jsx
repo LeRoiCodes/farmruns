@@ -49,50 +49,143 @@ const Sidebar = () => {
 
           <input
             type="radio"
-            name="role"
-            id="consumer"
+            name="category"
+            id="proteins"
             className="hidden"
-            value="consumer"
-            checked={isRadioSelected("consumer")}
-            onChange={() => setSelectedRadio("consumer")}
+            value="proteins"
+            checked={isRadioSelected("proteins")}
+            onChange={() => setSelectedRadio("proteins")}
           />
           <div>
           <label
-              htmlFor="consumer"
+              htmlFor="proteins"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
               <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
-                {isRadioSelected("consumer") && (
+                {isRadioSelected("proteins") && (
                   <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
                 )}
               </div>
-              Consumer
+              Proteins
             </label>
           </div>
 
           <input
             type="radio"
-            name="role"
-            id="farmer"
+            name="category"
+            id="vegetables"
             className="hidden"
-            value="farmer"
-            checked={isRadioSelected("farmer")}
-            onChange={() => setSelectedRadio("farmer")}
+            value="vegetables"
+            checked={isRadioSelected("vegetables")}
+            onChange={() => setSelectedRadio("vegetables")}
           />
 
           <div>
           <label
-              htmlFor="farmer"
+              htmlFor="vegetables"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
               <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
-                {isRadioSelected("farmer") && (
+                {isRadioSelected("vegetables") && (
                   <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
                 )}
               </div>
-              Farmer
+              Vegetables
             </label>
           </div>
+          <input
+            type="radio"
+            name="category"
+            id="carbohydrates"
+            className="hidden"
+            value="carbohydrates"
+            checked={isRadioSelected("carbohydrates")}
+            onChange={() => setSelectedRadio("carbohydrates")}
+          />
+
+          <div>
+          <label
+              htmlFor="carbohydrates"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("carbohydrates") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              Carbohydrates
+            </label>
+          </div>
+          <input
+            type="radio"
+            name="category"
+            id="fruits"
+            className="hidden"
+            value="fruits"
+            checked={isRadioSelected("fruits")}
+            onChange={() => setSelectedRadio("fruits")}
+          />
+
+          <div>
+          <label
+              htmlFor="fruits"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("fruits") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              Fruits
+            </label>
+          </div>
+          <input
+            type="radio"
+            name="category"
+            id="spices"
+            className="hidden"
+            value="spices"
+            checked={isRadioSelected("spices")}
+            onChange={() => setSelectedRadio("spices")}
+          />
+
+          <div>
+          <label
+              htmlFor="spices"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("spices") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              Spices
+            </label>
+          </div>
+          <input
+            type="radio"
+            name="category"
+            id="herbs"
+            className="hidden"
+            value="herbs"
+            checked={isRadioSelected("herbs")}
+            onChange={() => setSelectedRadio("herbs")}
+          />
+
+          <div>
+          <label
+              htmlFor="herbs"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("herbs") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              Herbs
+            </label>
+          </div>
+          
         </div>
       </div>
     </aside>
