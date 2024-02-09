@@ -17,7 +17,6 @@ const convertToBase64 = (file) => {
   });
 };
 
-
 const ListingModal = () => {
   const [image, setImage] = useState(null);
   const [imageFile, setImageFile] = useState(null);
@@ -40,15 +39,55 @@ const ListingModal = () => {
     setShowListingModal(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("Token not found");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://food-tech12.onrender.com/api/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name,
+            price: parseInt(price),
+            description: description,
+            category: category,
+            quantity: parseInt(quantity),
+            imageUrl: imageFile,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Product added successfully");
+        // Optionally, you can fetch and update the list of products after adding
+      } else {
+        console.error("Failed to add product");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+
     console.log({
-      name: name,
-      quantity: quantity,
-      image: image,
-      price: price,
-      availablePeriod: availablePeriod,
+      name,
+      price: parseInt(price),
+      description: description,
+      category: category,
+      quantity: parseInt(quantity),
+      imageUrl: imageFile,
     });
 
     closeModal();
@@ -60,6 +99,7 @@ const ListingModal = () => {
 
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
+    setImage(URL.createObjectURL(file));
     const base64 = await convertToBase64(file);
     setImageFile(base64);
   };
@@ -91,7 +131,7 @@ const ListingModal = () => {
             name="image"
             id="image"
             className="hidden"
-            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+            onChange={handleFileUpload}
             required
           />
         </div>
