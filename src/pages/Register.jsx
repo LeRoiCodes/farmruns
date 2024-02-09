@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate()
+
   const [selectedRadio, setSelectedRadio] = useState("creator");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -12,8 +14,35 @@ function Register() {
 
   const isRadioSelected = (value) => selectedRadio === value;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await fetch('https://food-tech12.onrender.com/api/auth/register/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstname: firstName,
+          lastname: lastName,
+          email: email,
+          username: userName,
+          mobile: mobile,
+          password: password,
+          role: selectedRadio,
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Signup successful');
+        navigate("/login")
+      } else {
+        console.error('Signup failed');
+      }
+    } catch (error) {
+      console.error('Error during signup:', error);
+    }
 
     console.log({
       firstname: firstName,

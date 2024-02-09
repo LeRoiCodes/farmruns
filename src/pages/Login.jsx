@@ -7,17 +7,33 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      Email: email,
-      password: password,
-    });
+    try {
+      const response = await fetch(
+        "https://food-tech12.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
-    setEmail("");
-    setPassword("");
-
-    navigate("/farmer/listings");
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        // You can also set an expiration time if needed: localStorage.setItem('token', { token: data.token, expires: Date.now() + 3600000 });
+        setEmail("");
+        setPassword("");
+        navigate("/farmer/listings");
+      } else {
+        console.error("Login failed");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
   };
 
   return (
