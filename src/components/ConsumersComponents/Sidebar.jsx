@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-
-  const [selectedRadio, setSelectedRadio] = useState("creator");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
+  const [selectedRadio, setSelectedRadio] = useState("dairy");
 
   const isRadioSelected = (value) => selectedRadio === value;
 
@@ -30,83 +23,77 @@ const Sidebar = () => {
       <div>
         <h2 className="font-oswald">Category</h2>
 
-        <div className="flex justify-between items-center">
-                <input
-                  type="radio"
-                  name="role"
-                  id="creator"
-                  className="hidden"
-                  value="creator"
-                  checked={isRadioSelected("creator")}
-                  onChange={() => setSelectedRadio("creator")}
-                />
-                <label
-                  htmlFor="creator"
-                  className="flex items-center gap-2 p-2 sm:p-[14px] radio_button font-oswald text-sm cursor-pointer"
-                >
-                  <img
-                    src={
-                      isRadioSelected("creator")
-                        ? "./assets/farmruns-logo-white.svg"
-                        : "./assets/farmruns-logo.svg"
-                    }
-                    alt="farmruns logo icon"
-                    className="w-[15px]"
-                  />
-                  Creator
-                </label>
-
-                <input
-                  type="radio"
-                  name="role"
-                  id="consumer"
-                  className="hidden"
-                  value="consumer"
-                  checked={isRadioSelected("consumer")}
-                  onChange={() => setSelectedRadio("consumer")}
-                />
-                <label
-                  htmlFor="consumer"
-                  className="flex items-center gap-2 p-2 sm:p-[14px] radio_button font-oswald text-sm cursor-pointer"
-                >
-                  <img
-                    src={
-                      isRadioSelected("consumer")
-                        ? "./assets/farmruns-logo-white.svg"
-                        : "./assets/farmruns-logo.svg"
-                    }
-                    alt="farmruns logo icon"
-                    className="w-[15px]"
-                  />
-                  Consumer
-                </label>
-
-                <input
-                  type="radio"
-                  name="role"
-                  id="farmer"
-                  className="hidden"
-                  value="farmer"
-                  checked={isRadioSelected("farmer")}
-                  onChange={() => setSelectedRadio("farmer")}
-                />
-
-                <label
-                  htmlFor="farmer"
-                  className="flex items-center gap-2 p-2 sm:p-[14px] radio_button font-oswald text-sm cursor-pointer"
-                >
-                  <img
-                    src={
-                      isRadioSelected("farmer")
-                        ? "./assets/farmruns-logo-white.svg"
-                        : "./assets/farmruns-logo.svg"
-                    }
-                    alt="farmruns logo icon"
-                    className="w-[15px]"
-                  />
-                  Farmer
-                </label>
+        <div className="flex flex-col">
+          <input
+            type="radio"
+            name="category"
+            id="diary"
+            className="hidden"
+            value="diary"
+            checked={isRadioSelected("diary")}
+            onChange={() => setSelectedRadio("diary")}
+          />
+          <div>
+            <label
+              htmlFor="diary"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("diary") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
               </div>
+              Diary
+            </label>
+          </div>
+
+          <input
+            type="radio"
+            name="role"
+            id="consumer"
+            className="hidden"
+            value="consumer"
+            checked={isRadioSelected("consumer")}
+            onChange={() => setSelectedRadio("consumer")}
+          />
+          <div>
+          <label
+              htmlFor="consumer"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("consumer") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              Consumer
+            </label>
+          </div>
+
+          <input
+            type="radio"
+            name="role"
+            id="farmer"
+            className="hidden"
+            value="farmer"
+            checked={isRadioSelected("farmer")}
+            onChange={() => setSelectedRadio("farmer")}
+          />
+
+          <div>
+          <label
+              htmlFor="farmer"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("farmer") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              Farmer
+            </label>
+          </div>
+        </div>
       </div>
     </aside>
   );
