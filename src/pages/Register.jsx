@@ -20,7 +20,7 @@ function Register() {
     e.preventDefault();
     let url;
 
-    if(selectedRadio === "customer"){
+    if(selectedRadio === "consumer"){
       url = "auth/register/user"
     }else if(selectedRadio === "farmer"){
       url = "auth/register/merchant"
