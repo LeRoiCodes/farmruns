@@ -84,7 +84,7 @@ function HomeNav() {
               </li>
               <li>
                 <Link
-                  to="/"
+                  to="/blog"
                   className="block py-2 pr-4 pl-3 text-black border-b border-[#55A349] hover:bg-[#b5f9aa] lg:hover:bg-transparent lg:border-0 lg:hover:text-[#55A349] lg:p-0"
                 >
                   Blog
