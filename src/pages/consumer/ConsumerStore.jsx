@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/ConsumersComponents/Sidebar";
 import { Link } from "react-router-dom";
 import { PiShoppingCart } from "react-icons/pi";
@@ -37,6 +37,46 @@ const listings = [
 ];
 
 const ConsumerStore = () => {
+  const [listing, setListings] = useState(null)
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        console.error('Token not found');
+        return;
+      }
+
+      try {
+        const response = await fetch('https://food-tech12.onrender.com/api/user/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        } else {
+          console.error('Failed to fetch user details');
+        }
+      } catch (error) {
+        console.error('Error fetching user details:', error);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
+  if(!user){
+    return <div className="w-screen h-screen flex justify-center items-center font-oswald gap-1">
+      <p>Please log in to access page</p>
+      <Link to="/login" className="text-green-10">Login</Link>
+    </div>
+  }
+
   return (
     <section className="flex">
       <Sidebar />

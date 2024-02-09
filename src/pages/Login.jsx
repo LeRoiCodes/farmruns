@@ -24,9 +24,9 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user_id", data.user_id);
+        localStorage.setItem("user_id", data.id);
         const userType = data.userType
-        // You can also set an expiration time if needed: localStorage.setItem('token', { token: data.token, expires: Date.now() + 3600000 });
+        
         setEmail("");
         setPassword("");
         if(userType === "user"){
