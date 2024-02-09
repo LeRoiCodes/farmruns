@@ -24,10 +24,18 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
+        const userType = data.userType
         // You can also set an expiration time if needed: localStorage.setItem('token', { token: data.token, expires: Date.now() + 3600000 });
         setEmail("");
         setPassword("");
-        navigate("/farmer/listings");
+        if(userType === "user"){
+          navigate("/consumer");
+
+        }else if(userType === "merchant"){
+          navigate("/farmer/listings");
+        }else{
+          console.log("wrong user type selected")
+        }
       } else {
         console.error("Login failed");
       }

@@ -18,21 +18,25 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let url;
+
+    if(selectedRadio === "customer"){
+      url = "auth/register/user"
+    }else if(selectedRadio === "farmer"){
+      url = "auth/register/merchant"
+    }
 
     try {
-      const response = await fetch('https://food-tech12.onrender.com/api/auth/register/user', {
+      const response = await fetch(`https://food-tech12.onrender.com/api/${url}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          firstname: firstName,
-          lastname: lastName,
+          name: firstName + lastName,
           email: email,
-          username: userName,
-          mobile: mobile,
           password: password,
-          role: selectedRadio,
+          
         }),
       });
 
@@ -49,6 +53,7 @@ function Register() {
     console.log({
       firstname: firstName,
       lastname: lastName,
+      name: firstName + lastName,
       email: email,
       username: userName,
       mobile: mobile,
