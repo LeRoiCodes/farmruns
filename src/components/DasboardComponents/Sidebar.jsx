@@ -11,7 +11,7 @@ import { HiOutlineBriefcase } from "react-icons/hi";
 const links = [
   {
     title: "Home",
-    link: "/dashboard",
+    link: "/dashboard/home",
     icon: <CiHome />,
   },
   {
@@ -21,27 +21,27 @@ const links = [
   },
   {
     title: "Farmers Hub",
-    link: "/farmers-hub",
+    link: "/dashboard/farmers-hub",
     icon: <LiaTruckMonsterSolid />,
   },
   {
     title: "Shop",
-    link: "/shop",
+    link: "/dashboard/shop",
     icon: <PiShoppingCart />,
   },
   {
     title: "Order History",
-    link: "/order",
+    link: "/dashboard/order",
     icon: <HiOutlineBriefcase />,
   },
   {
     title: "Favourites",
-    link: "/favourites",
+    link: "/dashboard/favourites",
     icon: <GoHeart />,
   },
   {
     title: "Settings",
-    link: "/settings",
+    link: "/dashboard/settings",
     icon: <RiSettings3Line />,
   },
 ];

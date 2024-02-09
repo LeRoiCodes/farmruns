@@ -13,6 +13,10 @@ import BlogPage from "./pages/BlogPage";
 import Home from "./pages/creator/Home";
 import FarmerHome from "./pages/farmer/FarmerHome";
 import Listings from "./pages/farmer/Listings";
+import Order from "./pages/farmer/Order";
+import Discount from "./pages/farmer/Discount";
+import Shipping from "./pages/farmer/Shipping";
+import Settings from "./pages/farmer/Settings";
 import Blog from "./pages/creator/Blog";
 import Favourites from "./pages/creator/Favourites";
 import Shop from "./pages/creator/Shop";
@@ -40,6 +44,10 @@ const router = createBrowserRouter(
       <Route path="/farmer" element={<FarmersLayout />}>
         <Route path="home" element={<FarmerHome />} />
         <Route path="listings" element={<Listings />} />
+        <Route path="order" element={<Order />} />
+        <Route path="discount" element={<Discount />} />
+        <Route path="Shipping" element={<Shipping />} />
+        <Route path="Settings" element={<Settings />} />
       </Route>
       <Route path="/consumer" element={<ConsumerStore />} />
       <Route path="/blog" element={<BlogPage />} />
