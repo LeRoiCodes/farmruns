@@ -24,18 +24,16 @@ function Login() {
       if (response.ok) {
         const data = await response.json();
         localStorage.setItem("token", data.token);
-        localStorage.setItem("user_id", data.id);
-        const userType = data.userType
-        
+        const userType = data.userType;
+
         setEmail("");
         setPassword("");
-        if(userType === "user"){
+        if (userType === "user") {
           navigate("/consumer");
-
-        }else if(userType === "merchant"){
+        } else if (userType === "merchant") {
           navigate("/farmer/listings");
-        }else{
-          console.log("wrong user type selected")
+        } else {
+          console.log("wrong user type selected");
         }
       } else {
         console.error("Login failed");
