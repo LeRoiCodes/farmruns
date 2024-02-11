@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ handleFilterChange }) => {
   const [selectedRadio, setSelectedRadio] = useState("dairy");
 
   const isRadioSelected = (value) => selectedRadio === value;
@@ -27,11 +27,35 @@ const Sidebar = () => {
           <input
             type="radio"
             name="category"
+            id="all"
+            className="hidden"
+            value="all"
+            checked={isRadioSelected("all")}
+            onChange={() => setSelectedRadio("all")}
+            onClick={() => handleFilterChange("all")}
+          />
+          <div>
+            <label
+              htmlFor="all"
+              className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
+            >
+              <div className="bg-white flex justify-center items-center w-5 h-5 rounded">
+                {isRadioSelected("all") && (
+                  <div className="w-[16px] h-[16px] rounded bg-green-10"></div>
+                )}
+              </div>
+              All
+            </label>
+          </div>
+          <input
+            type="radio"
+            name="category"
             id="diary"
             className="hidden"
             value="diary"
             checked={isRadioSelected("diary")}
             onChange={() => setSelectedRadio("diary")}
+            onClick={() => handleFilterChange("diary")}
           />
           <div>
             <label
@@ -55,9 +79,10 @@ const Sidebar = () => {
             value="proteins"
             checked={isRadioSelected("proteins")}
             onChange={() => setSelectedRadio("proteins")}
+            onClick={() => handleFilterChange("proteins")}
           />
           <div>
-          <label
+            <label
               htmlFor="proteins"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
@@ -78,10 +103,11 @@ const Sidebar = () => {
             value="vegetables"
             checked={isRadioSelected("vegetables")}
             onChange={() => setSelectedRadio("vegetables")}
+            onClick={() => handleFilterChange("vegetables")}
           />
 
           <div>
-          <label
+            <label
               htmlFor="vegetables"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
@@ -101,10 +127,11 @@ const Sidebar = () => {
             value="carbohydrates"
             checked={isRadioSelected("carbohydrates")}
             onChange={() => setSelectedRadio("carbohydrates")}
+            onClick={() => handleFilterChange("carbohydrates")}
           />
 
           <div>
-          <label
+            <label
               htmlFor="carbohydrates"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
@@ -124,10 +151,11 @@ const Sidebar = () => {
             value="fruits"
             checked={isRadioSelected("fruits")}
             onChange={() => setSelectedRadio("fruits")}
+            onClick={() => handleFilterChange("fruits")}
           />
 
           <div>
-          <label
+            <label
               htmlFor="fruits"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
@@ -147,10 +175,11 @@ const Sidebar = () => {
             value="spices"
             checked={isRadioSelected("spices")}
             onChange={() => setSelectedRadio("spices")}
+            onClick={() => handleFilterChange("spices")}
           />
 
           <div>
-          <label
+            <label
               htmlFor="spices"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
@@ -170,10 +199,11 @@ const Sidebar = () => {
             value="herbs"
             checked={isRadioSelected("herbs")}
             onChange={() => setSelectedRadio("herbs")}
+            onClick={() => handleFilterChange("herbs")}
           />
 
           <div>
-          <label
+            <label
               htmlFor="herbs"
               className="flex items-center gap-2 p-2 sm:p-[14px] font-oswald text-sm cursor-pointer"
             >
@@ -185,7 +215,6 @@ const Sidebar = () => {
               Herbs
             </label>
           </div>
-          
         </div>
       </div>
     </aside>

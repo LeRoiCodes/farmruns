@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -9,6 +10,9 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    toast.loading("Login in...");
+
     try {
       const response = await fetch(
         "https://food-tech12.onrender.com/api/auth/login",
@@ -20,6 +24,8 @@ function Login() {
           body: JSON.stringify({ email, password }),
         }
       );
+
+      toast.dismiss();
 
       if (response.ok) {
         const data = await response.json();
@@ -37,10 +43,13 @@ function Login() {
         }
       } else {
         console.error("Login failed");
+        toast.error("Login Failed...");
       }
     } catch (error) {
       console.error("Error during login:", error);
     }
+
+    toast.dismiss();
   };
 
   return (

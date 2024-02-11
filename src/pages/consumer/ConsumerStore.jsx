@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/ConsumersComponents/Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiShoppingCart } from "react-icons/pi";
 import { BiStore } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
+import Loading from "../../components/layouts/Loading";
+import { useModal } from "../../context/store";
 
-const listings = [
+const listing = [
   {
     name: "Eggplants",
     image: "./assets/eggplant.png",
     source: "Farmer Fletcher",
     isFavourite: true,
     price: "200",
+    merchant: {
+      name: "John",
+    },
   },
   {
     name: "Tomatoes",
@@ -19,6 +24,9 @@ const listings = [
     source: "Farmer Fletcher",
     isFavourite: false,
     price: "600",
+    merchant: {
+      name: "John",
+    },
   },
   {
     name: "Carrots",
@@ -26,6 +34,9 @@ const listings = [
     source: "Farmer John",
     isFavourite: true,
     price: "200",
+    merchant: {
+      name: "John",
+    },
   },
   {
     name: "Onions",
@@ -33,53 +44,155 @@ const listings = [
     source: "Farmer John",
     isFavourite: false,
     price: "800",
+    merchant: {
+      name: "John",
+    },
   },
 ];
 
 const ConsumerStore = () => {
-  const [listing, setListings] = useState(null)
+  const { consumerCart, setConsumerCart } = useModal();
+
+  const [originalListings, setOriginalListings] = useState([]);
+  const [listings, setListings] = useState(listing);
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+
+  let sum;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      const token = localStorage.getItem('token');
+      setLoading(true);
+
+      const token = localStorage.getItem("token");
 
       if (!token) {
-        console.error('Token not found');
+        console.error("Token not found");
+        navigate("/");
+        setLoading(false);
         return;
       }
 
       try {
-        const response = await fetch('https://food-tech12.onrender.com/api/user/profile', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://food-tech12.onrender.com/api/user/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
           setUser(data);
+          setLoading(false);
         } else {
-          console.error('Failed to fetch user details');
+          console.error("Failed to fetch user details");
+          navigate("/");
+          setLoading(false);
         }
       } catch (error) {
-        console.error('Error fetching user details:', error);
+        console.error("Error fetching user details:", error);
       }
     };
 
     fetchUserDetails();
   }, []);
 
-  if(!user){
-    return <div className="w-screen h-screen flex justify-center items-center font-oswald gap-1">
-      <p>Please log in to access page</p>
-      <Link to="/login" className="text-green-10">Login</Link>
-    </div>
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token not found");
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          "https://food-tech12.onrender.com/api/products",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setOriginalListings(data);
+          setListings(data);
+        } else {
+          console.error("Failed to fetch products");
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleFilterChange = (filter) => {
+    // Filter through the original set of products based on the selected filter
+    if (filter === "all") {
+      setListings(originalListings);
+    } else {
+      const filteredListings = originalListings.filter(
+        (product) => product.category === filter // Update with your actual category property
+      );
+      setListings(filteredListings);
+    }
+  };
+
+  const calculateTotalPrice = () => {
+    return consumerCart.reduce(
+      (total, cartItem) => total + cartItem.totalPrice,
+      0
+    );
+  };
+
+  const addProductToCart = (product) => {
+    const existingProductIndex = consumerCart.findIndex(
+      (cartItem) => product._id === cartItem._id
+    );
+
+    if (existingProductIndex !== -1) {
+      // Product already exists in the cart, increase the size
+      const updatedCart = [...consumerCart];
+      updatedCart[existingProductIndex] = {
+        ...updatedCart[existingProductIndex],
+        size: updatedCart[existingProductIndex].size + 1,
+        totalPrice:
+          (updatedCart[existingProductIndex].size + 1) * product.price,
+      };
+      setConsumerCart(updatedCart);
+    } else {
+      // Product doesn't exist in the cart, add it
+      setConsumerCart([
+        ...consumerCart,
+        { ...product, size: 1, totalPrice: product.price },
+      ]);
+    }
+  };
+
+  const removeProductFromCart = (productId) => {
+    const updatedCart = consumerCart.filter(
+      (cartItem) => cartItem._id !== productId
+    );
+    setConsumerCart(updatedCart);
+  };
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
     <section className="flex">
-      <Sidebar />
+      <Sidebar handleFilterChange={handleFilterChange} />
 
       {/* Main store */}
 
@@ -107,104 +220,114 @@ const ConsumerStore = () => {
 
         <div className="grid sm:grid-cols-3 gap-4 mt-5">
           <div className="col-span-2 grid">
-            <div className="grid sm:grid-cols-2 gap-4">
-              {listings.map((listing, index) => (
-                <div
-                  key={index}
-                  className="relative flex flex-col shadow_card bg-white rounded-2xl p-6"
-                >
-                  <div className="flex justify-between">
-                    <div className="font-oswald">
-                      <p>{listing.name}</p>
-                      <p className="text-sm font-light">{listing.source}</p>
-                    </div>
-                    <p className="font-oswald">#{listing.price}kg</p>
-                  </div>
-                  <img src={listing.image} alt={listing.name} />
-                  <button className="absolute bottom-16 right-5">
-                    {listing.isFavourite ? (
-                      <GoHeart />
-                    ) : (
-                      <GoHeartFill className="text-red-500" />
-                    )}
-                  </button>
-                  <div className="flex mt-auto items-center justify-between">
-                    <div className="flex gap-2 items-center">
-                      <button
-                        className="w-4 h-4 flex justify-center items-center rounded-md border border-solid border-black"
-                        disabled
-                      >
-                        -
-                      </button>
-                      <div className="flex font-oswald text-sm items-center justify-center w-6 h-6 rounded-md border border-solid border-black">
-                        1
+            {listings.length < 1 ? (
+              <div className="bg-white rounded-2xl shadow_card p-3 font-oswald">
+                No Item found...
+              </div>
+            ) : (
+              <div className="grid sm:grid-cols-2 gap-4">
+                {listings.map((listing, index) => (
+                  <div
+                    key={index}
+                    className="relative flex flex-col shadow_card bg-white rounded-2xl p-6"
+                  >
+                    <div className="flex justify-between">
+                      <div className="font-oswald">
+                        <p>{listing.name}</p>
+                        <p className="text-sm font-light">
+                          {listing.merchant.name}
+                        </p>
                       </div>
-                      <button className="w-4 h-4 flex justify-center items-center rounded-md border border-solid border-black">
-                        +
-                      </button>
+                      <p className="font-oswald">#{listing.price}kg</p>
                     </div>
-                    <div>
-                      <button className="font-oswald transition-all bg-green-10 text-sm px-5 rounded-lg py-1 text-white hover:bg-green-800">
-                        Add to cart
-                      </button>
+                    <img
+                      src={listing.imageUrl}
+                      alt={listing.name}
+                      className="my-2 rounded-lg"
+                    />
+
+                    <div className="flex mt-auto items-center justify-end">
+                      <div>
+                        <button
+                          onClick={() => addProductToCart(listing)}
+                          className="font-oswald transition-all bg-green-10 text-sm px-5 rounded-lg py-1 text-white hover:bg-green-800"
+                        >
+                          Add to cart
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Cart */}
           <div className="shadow_card hidden sm:block bg-white rounded-xl">
             <h2 className="font-oswald p-3 text-green-10">Cart</h2>
-            <div>
-              {listings.map((listing, index) => (
-                <div
-                  key={index}
-                  className="border-b border-solid p-3 border-gray-5"
-                >
-                  <div className="flex items-center">
-                    <img
-                      src={listing.image}
-                      alt={listing.name}
-                      className="w-[70px] mr-1"
-                    />
-                    <div>
-                      <p className="font-oswald text-sm">{listing.name}</p>
-                      <p className="font-oswald font-light text-sm">
-                        {listing.source}
-                      </p>
+            {!(consumerCart.length > 0) ? (
+              <div className="pl-3 font-oswald">Your cart is empty..</div>
+            ) : (
+              <div>
+                <div>
+                  {consumerCart.map((listing, index) => (
+                    <div
+                      key={index}
+                      className="border-b border-solid p-3 border-gray-5"
+                    >
+                      <div className="flex items-center">
+                        <img
+                          src={listing.imageUrl}
+                          alt={listing.name}
+                          className="w-[70px] mr-1"
+                        />
+                        <div>
+                          <p className="font-oswald text-sm">{listing.name}</p>
+                          <p className="font-oswald font-light text-sm">
+                            {listing.merchant.name}
+                          </p>
+                        </div>
+                        <div className="ml-auto">
+                          <p className="font-light font-oswald text-xs">
+                            Size:{" "}
+                            <span className="font-normal">
+                              {listing.size}kg
+                            </span>
+                          </p>
+                          <p className="font-light font-oswald text-xs">
+                            Total:{" "}
+                            <span className="font-normal">
+                              #{listing.totalPrice}
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                      <div className="w-full flex justify-end items-center">
+                        <button
+                          onClick={() => removeProductFromCart(listing._id)}
+                          className="text-white text-xs bg-green-10 hover:bg-green-700 px-3 py-1 font-oswald rounded-md"
+                        >
+                          Remove
+                        </button>
+                      </div>
                     </div>
-                    <div className="ml-auto">
-                      <p className="font-light font-oswald text-xs">
-                        Size: <span className="font-normal">1kg</span>
-                      </p>
-                      <p className="font-light font-oswald text-xs">
-                        Total: <span className="font-normal">#2000</span>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="w-full flex justify-end items-center">
-                    <button className="text-white text-xs bg-green-10 hover:bg-green-700 px-3 py-1 font-oswald rounded-md">
-                      Remove
-                    </button>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="flex items-center justify-between mt-5 px-3">
-              <p className="font-oswald">Total</p>
-              <p className="font-oswald">#1,000</p>
-            </div>
+                <div className="flex items-center justify-between mt-5 px-3">
+                  <p className="font-oswald">Total</p>
+                  <p className="font-oswald">#{calculateTotalPrice()}</p>
+                </div>
 
-            <div className="flex flex-col gap-2 p-3">
-              <button className="w-full font-oswald bg-green-10 text-white hover:bg-green-700 py-1 rounded-lg">
-                Confirm Order
-              </button>
-              <button className=" w-full font-oswald shadow_card hover:bg-gray-5 py-1 rounded-lg">
-                Empty Cart
-              </button>
-            </div>
+                <div className="flex flex-col gap-2 p-3">
+                  <button className="w-full font-oswald bg-green-10 text-white hover:bg-green-700 py-1 rounded-lg">
+                    Confirm Order
+                  </button>
+                  <button className=" w-full font-oswald shadow_card hover:bg-gray-5 py-1 rounded-lg">
+                    Empty Cart
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

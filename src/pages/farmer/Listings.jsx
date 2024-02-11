@@ -72,48 +72,44 @@ const orders = [
 const Listings = () => {
   const { setShowListingModal } = useModal();
 
-  const [user, setUser] = useState(null);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const fetchUserDetails = async () => {
-      const token = localStorage.getItem('token');
+    const fetchUserProducts = async () => {
+      const token = localStorage.getItem("token");
 
       if (!token) {
-        console.error('Token not found');
+        console.error("Token not found");
         return;
       }
 
       try {
-        const response = await fetch('https://food-tech12.onrender.com/api/merchant/profile', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://food-tech12.onrender.com/api/merchant/products",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
-          setUser(data);
+          setProducts(data);
         } else {
-          console.error('Failed to fetch user details');
+          console.error("Failed to fetch products");
         }
       } catch (error) {
-        console.error('Error fetching user details:', error);
+        console.error("Error fetching products:", error);
       }
     };
 
-    fetchUserDetails();
+    fetchUserProducts();
   }, []);
 
   const openModal = () => {
     setShowListingModal(true);
   };
-
-  if(!user){
-    return <div className="w-screen h-screen flex justify-center items-center font-oswald gap-1">
-      <p>Please log in to access page</p>
-      <Link to="/login" className="text-green-10">Login</Link>
-    </div>
-  }
 
   return (
     <section className="bg-[#F0F0F0] h-screen overflow-y-scroll lg:pl-[43px] py-[20px] px-[20px]">
