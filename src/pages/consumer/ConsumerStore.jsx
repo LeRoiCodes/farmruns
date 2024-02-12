@@ -84,7 +84,6 @@ const ConsumerStore = () => {
 
         if (response.ok) {
           setLoading(false);
-         
         } else {
           console.error("Failed to fetch user details");
           navigate("/login");
@@ -188,7 +187,6 @@ const ConsumerStore = () => {
     return <Loading />;
   }
 
-
   return (
     <section className="flex">
       <Sidebar handleFilterChange={handleFilterChange} />
@@ -219,114 +217,122 @@ const ConsumerStore = () => {
 
         <div className="grid sm:grid-cols-3 gap-4 mt-5">
           <div className="col-span-2 grid">
-            {listings.length < 1 ? (
-              <div className="bg-white rounded-2xl shadow_card p-3 font-oswald">
-                No Item found...
-              </div>
-            ) : (
-              <div className="grid sm:grid-cols-2 gap-4">
-                {listings.map((listing, index) => (
-                  <div
-                    key={index}
-                    className="relative flex flex-col shadow_card bg-white rounded-2xl p-6"
-                  >
-                    <div className="flex justify-between">
-                      <div className="font-oswald">
-                        <p>{listing.name}</p>
-                        <p className="text-sm font-light">
-                          {listing.merchant.name}
-                        </p>
-                      </div>
-                      <p className="font-oswald">#{listing.price}kg</p>
-                    </div>
-                    <img
-                      src={listing.imageUrl}
-                      alt={listing.name}
-                      className="my-2 rounded-lg"
-                    />
-
-                    <div className="flex mt-auto items-center justify-end">
-                      <div>
-                        <button
-                          onClick={() => addProductToCart(listing)}
-                          className="font-oswald transition-all bg-green-10 text-sm px-5 rounded-lg py-1 text-white hover:bg-green-800"
-                        >
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Cart */}
-          <div className="shadow_card hidden sm:block bg-white rounded-xl">
-            <h2 className="font-oswald p-3 text-green-10">Cart</h2>
-            {!(consumerCart.length > 0) ? (
-              <div className="pl-3 font-oswald">Your cart is empty..</div>
-            ) : (
-              <div>
-                <div>
-                  {consumerCart.map((listing, index) => (
+            <div>
+              {listings.length < 1 ? (
+                <div className="bg-white h-40 rounded-2xl shadow_card p-3 font-oswald">
+                  No Item found...
+                </div>
+              ) : (
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {listings.map((listing, index) => (
                     <div
                       key={index}
-                      className="border-b border-solid p-3 border-gray-5"
+                      className="relative flex flex-col shadow_card bg-white rounded-2xl p-6"
                     >
-                      <div className="flex items-center">
-                        <img
-                          src={listing.imageUrl}
-                          alt={listing.name}
-                          className="w-[70px] mr-1"
-                        />
-                        <div>
-                          <p className="font-oswald text-sm">{listing.name}</p>
-                          <p className="font-oswald font-light text-sm">
+                      <div className="flex justify-between">
+                        <div className="font-oswald">
+                          <p>{listing.name}</p>
+                          <p className="text-sm font-light">
                             {listing.merchant.name}
                           </p>
                         </div>
-                        <div className="ml-auto">
-                          <p className="font-light font-oswald text-xs">
-                            Size:{" "}
-                            <span className="font-normal">
-                              {listing.size}kg
-                            </span>
-                          </p>
-                          <p className="font-light font-oswald text-xs">
-                            Total:{" "}
-                            <span className="font-normal">
-                              #{listing.totalPrice}
-                            </span>
-                          </p>
-                        </div>
+                        <p className="font-oswald">#{listing.price}kg</p>
                       </div>
-                      <div className="w-full flex justify-end items-center">
-                        <button
-                          onClick={() => removeProductFromCart(listing._id)}
-                          className="text-white text-xs bg-green-10 hover:bg-green-700 px-3 py-1 font-oswald rounded-md"
-                        >
-                          Remove
-                        </button>
+                      <img
+                        src={listing.imageUrl}
+                        alt={listing.name}
+                        className="my-2 rounded-lg"
+                      />
+
+                      <div className="flex mt-auto items-center justify-end">
+                        <div>
+                          <button
+                            onClick={() => addProductToCart(listing)}
+                            className="font-oswald transition-all bg-green-10 text-sm px-5 rounded-lg py-1 text-white hover:bg-green-800"
+                          >
+                            Add to cart
+                          </button>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="flex items-center justify-between mt-5 px-3">
-                  <p className="font-oswald">Total</p>
-                  <p className="font-oswald">#{calculateTotalPrice()}</p>
-                </div>
+              )}
+            </div>
+          </div>
 
-                <div className="flex flex-col gap-2 p-3">
-                  <button className="w-full font-oswald bg-green-10 text-white hover:bg-green-700 py-1 rounded-lg">
-                    Confirm Order
-                  </button>
-                  <button className=" w-full font-oswald shadow_card hover:bg-gray-5 py-1 rounded-lg">
-                    Empty Cart
-                  </button>
+          {/* Cart */}
+          <div>
+            <div className="shadow_card hidden sm:block bg-white rounded-xl">
+              <h2 className="font-oswald p-3 text-green-10">Cart</h2>
+              {!(consumerCart.length > 0) ? (
+                <div className="pl-3 pb-3 font-oswald">
+                  Your cart is empty..
                 </div>
-              </div>
-            )}
+              ) : (
+                <div>
+                  <div>
+                    {consumerCart.map((listing, index) => (
+                      <div
+                        key={index}
+                        className="border-b border-solid p-3 border-gray-5"
+                      >
+                        <div className="flex items-center">
+                          <img
+                            src={listing.imageUrl}
+                            alt={listing.name}
+                            className="w-[70px] mr-1"
+                          />
+                          <div>
+                            <p className="font-oswald text-sm">
+                              {listing.name}
+                            </p>
+                            <p className="font-oswald font-light text-sm">
+                              {listing.merchant.name}
+                            </p>
+                          </div>
+                          <div className="ml-auto">
+                            <p className="font-light font-oswald text-xs">
+                              Size:{" "}
+                              <span className="font-normal">
+                                {listing.size}kg
+                              </span>
+                            </p>
+                            <p className="font-light font-oswald text-xs">
+                              Total:{" "}
+                              <span className="font-normal">
+                                #{listing.totalPrice}
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                        <div className="w-full flex justify-end items-center">
+                          <button
+                            onClick={() => removeProductFromCart(listing._id)}
+                            className="text-white text-xs bg-green-10 hover:bg-green-700 px-3 py-1 font-oswald rounded-md"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between mt-5 px-3">
+                    <p className="font-oswald">Total</p>
+                    <p className="font-oswald">#{calculateTotalPrice()}</p>
+                  </div>
+
+                  <div className="flex flex-col gap-2 p-3">
+                    <button className="w-full font-oswald bg-green-10 text-white hover:bg-green-700 py-1 rounded-lg">
+                      Confirm Order
+                    </button>
+                    <button className=" w-full font-oswald shadow_card hover:bg-gray-5 py-1 rounded-lg">
+                      Empty Cart
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

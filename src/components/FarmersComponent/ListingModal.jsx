@@ -64,7 +64,7 @@ const ListingModal = () => {
             description: description,
             category: category.toLowerCase(),
             quantity: parseInt(quantity),
-            imageUrl: imageFile,
+            image: imageFile,
           }),
         }
       );
@@ -85,7 +85,7 @@ const ListingModal = () => {
       description: description,
       category: category,
       quantity: parseInt(quantity),
-      imageUrl: imageFile,
+      image: imageFile,
     });
 
     closeModal();
@@ -191,7 +191,7 @@ const ListingModal = () => {
               <option value="spices">Spices</option>
               <option value="herbs">Herbs</option>
             </select>
-            
+
             <input
               type="text"
               name="description"
