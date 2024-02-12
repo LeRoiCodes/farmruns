@@ -3,7 +3,6 @@ import Sidebar from "../../components/ConsumersComponents/Sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import { PiShoppingCart } from "react-icons/pi";
 import { BiStore } from "react-icons/bi";
-import { GoHeart, GoHeartFill } from "react-icons/go";
 import Loading from "../../components/layouts/Loading";
 import { useModal } from "../../context/store";
 
@@ -56,9 +55,6 @@ const ConsumerStore = () => {
   const [originalListings, setOriginalListings] = useState([]);
   const [listings, setListings] = useState(listing);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
-
-  let sum;
 
   const navigate = useNavigate();
 
@@ -86,8 +82,6 @@ const ConsumerStore = () => {
         );
 
         if (response.ok) {
-          const data = await response.json();
-          setUser(data);
           setLoading(false);
         } else {
           console.error("Failed to fetch user details");
@@ -131,6 +125,8 @@ const ConsumerStore = () => {
       } catch (error) {
         console.error("Error fetching products:", error);
       }
+
+      console.log(listings);
     };
 
     fetchProducts();
