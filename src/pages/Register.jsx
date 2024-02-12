@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import "../styles/register.css";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [selectedRadio, setSelectedRadio] = useState("creator");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -12,12 +18,54 @@ function Register() {
 
   const isRadioSelected = (value) => selectedRadio === value;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    let url;
+
+    if (selectedRadio === "consumer") {
+      url = "auth/register/user";
+    } else if (selectedRadio === "farmer") {
+      url = "auth/register/merchant";
+    }
+
+    toast.loading("Loading...");
+
+    try {
+      const response = await fetch(
+        `https://food-tech12.onrender.com/api/${url}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: firstName + " " + lastName,
+            email: email,
+            password: password,
+          }),
+        }
+      );
+
+      toast.dismiss();
+
+      if (response.ok) {
+        toast.success("successful...");
+        navigate("/login");
+      } else {
+        console.log(response);
+        console.error("Signup failed");
+        toast.error("User already exist...");
+      }
+    } catch (error) {
+      console.error("Error during signup:", error);
+    }
+
+    toast.dismiss({ delay: 2000 });
 
     console.log({
       firstname: firstName,
       lastname: lastName,
+      name: firstName + lastName,
       email: email,
       username: userName,
       mobile: mobile,
@@ -36,6 +84,7 @@ function Register() {
 
   return (
     <section className="w-screen relative">
+      <ToastContainer />
       <div className="h-screen w-screen flex justify-between">
         <div className="w-full h-full overflow-y-scroll max-sm:px-[20px] max-lg:px-[80px] lg:ml-[90px] no-scrollbar py-[30px]">
           <Link to="/" className="flex gap-[20px] items-center max-w-[180px]">

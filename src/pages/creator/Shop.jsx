@@ -1,7 +1,12 @@
 import React from "react";
+import NotReady from "../../components/NotReady";
 
 const Shop = () => {
-  return <div>Shop</div>;
+  return (
+    <section className="w-full h-full">
+      <NotReady />
+    </section>
+  );
 };
 
 export default Shop;

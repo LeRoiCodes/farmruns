@@ -1,7 +1,12 @@
 import React from "react";
+import NotReady from "../../components/NotReady";
 
 const Settings = () => {
-  return <div>Settings</div>;
+  return (
+    <section className="w-full h-full">
+      <NotReady />
+    </section>
+  );
 };
 
 export default Settings;

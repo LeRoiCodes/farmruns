@@ -3,12 +3,29 @@ import { useModal } from "../../context/store";
 import { useState } from "react";
 import { BsUpload } from "react-icons/bs";
 
+// Function to covert to binary64
+const convertToBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+};
+
 const ListingModal = () => {
   const [image, setImage] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [availablePeriod, setAvailablePeriod] = useState("");
+  const [category, setcategory] = useState("");
+  const [description, setDescription] = useState("");
 
   const { setShowListingModal } = useModal();
 
@@ -22,15 +39,54 @@ const ListingModal = () => {
     setShowListingModal(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("Token not found");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        "https://food-tech12.onrender.com/api/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: name,
+            price: parseInt(price),
+            description: description,
+            category: category.toLowerCase(),
+            quantity: parseInt(quantity),
+            imageUrl:
+              "https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg?w=400&h=300&c=crop",
+          }),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Product added successfully");
+        // Optionally, you can fetch and update the list of products after adding
+      } else {
+        console.error("Failed to add product");
+      }
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+
     console.log({
-      name: name,
-      quantity: quantity,
-      image: image,
-      price: price,
-      availablePeriod: availablePeriod,
+      name,
+      price: parseInt(price),
+      description: description,
+      category: category,
+      quantity: parseInt(quantity),
+      image: imageFile,
     });
 
     closeModal();
@@ -38,6 +94,13 @@ const ListingModal = () => {
 
   const handleCloseModal = () => {
     closeModal();
+  };
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    setImage(URL.createObjectURL(file));
+    const base64 = await convertToBase64(file);
+    setImageFile(base64);
   };
 
   return (
@@ -67,7 +130,7 @@ const ListingModal = () => {
             name="image"
             id="image"
             className="hidden"
-            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+            onChange={handleFileUpload}
             required
           />
         </div>
@@ -110,6 +173,34 @@ const ListingModal = () => {
               required
               value={availablePeriod}
               onChange={(e) => setAvailablePeriod(e.target.value)}
+            />
+          </div>
+          <div className="flex gap-4 w-full">
+            <select
+              name="category"
+              value={category}
+              onChange={(e) => setcategory(e.target.value)}
+              id="category"
+              required
+              className="p-2 bg-gray-5 w-full font-oswald font-light border border-solid border-black rounded-lg outline-none"
+            >
+              <option value="diary">Diary</option>
+              <option value="proteins">Proteins</option>
+              <option value="vegetables">Vegetables</option>
+              <option value="carbohydrates">Carbohydrates</option>
+              <option value="fruits">Fruits</option>
+              <option value="spices">Spices</option>
+              <option value="herbs">Herbs</option>
+            </select>
+
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className="p-2 bg-gray-5 w-full font-oswald font-light border border-solid border-black rounded-lg outline-none"
+              required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="font-oswald flex justify-end gap-3">

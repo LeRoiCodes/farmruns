@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
@@ -7,21 +8,52 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({
-      Email: email,
-      password: password,
-    });
 
-    setEmail("");
-    setPassword("");
+    toast.loading("Login in...");
 
-    navigate("/farmer/listings");
+    try {
+      const response = await fetch(
+        "https://food-tech12.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
+
+      toast.dismiss();
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        const userType = data.userType;
+
+        setEmail("");
+        setPassword("");
+        if (userType === "user") {
+          navigate("/consumer");
+        } else if (userType === "merchant") {
+          navigate("/farmer/listings");
+        } else {
+          console.log("wrong user type selected");
+        }
+      } else {
+        console.error("Login failed");
+        toast.error("Invalid credentials");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+
   };
 
   return (
     <section className="w-screen relative">
+      <ToastContainer />
       <div className="h-screen w-screen flex justify-between">
         <div className="w-full max-sm:px-[20px] max-lg:px-[80px] lg:ml-[90px]">
           <Link

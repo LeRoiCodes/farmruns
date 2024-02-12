@@ -25,6 +25,7 @@ import FarmersHub from "./pages/creator/FarmersHub";
 import Settings from "./pages/creator/Settings";
 import FarmersLayout from "./components/layouts/FarmersLayout";
 import ConsumerStore from "./pages/consumer/ConsumerStore";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,6 +52,7 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/consumer" element={<ConsumerStore />} />
       <Route path="/blog" element={<BlogPage />} />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );

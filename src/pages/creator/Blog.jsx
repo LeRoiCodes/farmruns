@@ -1,7 +1,12 @@
 import React from "react";
+import NotReady from "../../components/NotReady";
 
 const Blog = () => {
-  return <div>Blog</div>;
+  return (
+    <section className="w-full h-full">
+      <NotReady />
+    </section>
+  );
 };
 
 export default Blog;
