@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import BottomBar from "../FarmersComponent/BottomBar";
 import Sidebar from "../FarmersComponent/Sidebar";
 import ListingModal from "../FarmersComponent/ListingModal";
@@ -21,7 +21,7 @@ const FarmersLayout = () => {
 
       if (!token) {
         console.error("Token not found");
-        navigate("/");
+        navigate("/login");
         setLoading(false);
         return;
       }
@@ -40,9 +40,10 @@ const FarmersLayout = () => {
           const data = await response.json();
           setMerchantDetails(data);
           setLoading(false);
+         
         } else {
           console.error("Failed to fetch user details");
-          navigate("/");
+          navigate("/login");
           setLoading(false);
         }
       } catch (error) {

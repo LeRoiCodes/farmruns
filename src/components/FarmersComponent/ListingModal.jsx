@@ -42,8 +42,6 @@ const ListingModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
-
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -64,7 +62,7 @@ const ListingModal = () => {
             name,
             price: parseInt(price),
             description: description,
-            category: category,
+            category: category.toLowerCase(),
             quantity: parseInt(quantity),
             imageUrl: imageFile,
           }),
@@ -177,15 +175,23 @@ const ListingModal = () => {
             />
           </div>
           <div className="flex gap-4 w-full">
-            <input
-              type="text"
+            <select
               name="category"
-              placeholder="Category"
-              className="p-2 bg-gray-5 w-full font-oswald font-light border border-solid border-black rounded-lg outline-none"
-              required
               value={category}
               onChange={(e) => setcategory(e.target.value)}
-            />
+              id="category"
+              required
+              className="p-2 bg-gray-5 w-full font-oswald font-light border border-solid border-black rounded-lg outline-none"
+            >
+              <option value="diary">Diary</option>
+              <option value="proteins">Proteins</option>
+              <option value="vegetables">Vegetables</option>
+              <option value="carbohydrates">Carbohydrates</option>
+              <option value="fruits">Fruits</option>
+              <option value="spices">Spices</option>
+              <option value="herbs">Herbs</option>
+            </select>
+            
             <input
               type="text"
               name="description"

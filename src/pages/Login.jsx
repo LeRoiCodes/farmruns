@@ -43,17 +43,17 @@ function Login() {
         }
       } else {
         console.error("Login failed");
-        toast.error("Login Failed...");
+        toast.error("Invalid credentials");
       }
     } catch (error) {
       console.error("Error during login:", error);
     }
 
-    toast.dismiss();
   };
 
   return (
     <section className="w-screen relative">
+      <ToastContainer />
       <div className="h-screen w-screen flex justify-between">
         <div className="w-full max-sm:px-[20px] max-lg:px-[80px] lg:ml-[90px]">
           <Link

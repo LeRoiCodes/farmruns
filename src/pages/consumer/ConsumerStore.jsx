@@ -55,6 +55,7 @@ const ConsumerStore = () => {
   const [originalListings, setOriginalListings] = useState([]);
   const [listings, setListings] = useState(listing);
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState("");
 
   const navigate = useNavigate();
 
@@ -66,7 +67,7 @@ const ConsumerStore = () => {
 
       if (!token) {
         console.error("Token not found");
-        navigate("/");
+        navigate("/login");
         setLoading(false);
         return;
       }
@@ -83,9 +84,10 @@ const ConsumerStore = () => {
 
         if (response.ok) {
           setLoading(false);
+         
         } else {
           console.error("Failed to fetch user details");
-          navigate("/");
+          navigate("/login");
           setLoading(false);
         }
       } catch (error) {
@@ -185,6 +187,7 @@ const ConsumerStore = () => {
   if (loading) {
     return <Loading />;
   }
+
 
   return (
     <section className="flex">
