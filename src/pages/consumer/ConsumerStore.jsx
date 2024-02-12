@@ -3,7 +3,6 @@ import Sidebar from "../../components/ConsumersComponents/Sidebar";
 import { Link, useNavigate } from "react-router-dom";
 import { PiShoppingCart } from "react-icons/pi";
 import { BiStore } from "react-icons/bi";
-import { GoHeart, GoHeartFill } from "react-icons/go";
 import Loading from "../../components/layouts/Loading";
 import { useModal } from "../../context/store";
 
@@ -56,9 +55,7 @@ const ConsumerStore = () => {
   const [originalListings, setOriginalListings] = useState([]);
   const [listings, setListings] = useState(listing);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
-
-  let sum;
+  const [user, setUser] = useState("");
 
   const navigate = useNavigate();
 
@@ -70,7 +67,7 @@ const ConsumerStore = () => {
 
       if (!token) {
         console.error("Token not found");
-        navigate("/");
+        navigate("/login");
         setLoading(false);
         return;
       }
@@ -89,9 +86,10 @@ const ConsumerStore = () => {
           const data = await response.json();
           setUser(data);
           setLoading(false);
+         
         } else {
           console.error("Failed to fetch user details");
-          navigate("/");
+          navigate("/login");
           setLoading(false);
         }
       } catch (error) {
@@ -189,6 +187,7 @@ const ConsumerStore = () => {
   if (loading) {
     return <Loading />;
   }
+
 
   return (
     <section className="flex">

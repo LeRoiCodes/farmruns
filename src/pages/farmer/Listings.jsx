@@ -6,23 +6,23 @@ import { useModal } from "../../context/store";
 
 const listings = [
   {
-    title: "Proteins",
-    image: "../assets/protein-image.png",
+    name: "Proteins",
+    imageUrl: "../assets/protein-image.png",
     price: "1,200",
   },
   {
-    title: "Vegetables",
-    image: "../assets/vegetables-image.png",
+    name: "Vegetables",
+    imageUrl: "../assets/vegetables-image.png",
     price: "1,000",
   },
   {
-    title: "Spices",
-    image: "../assets/spices-image.png",
+    name: "Spices",
+    imageUrl: "../assets/spices-image.png",
     price: "800",
   },
   {
     title: "Carbohydrates",
-    image: "../assets/carbohydrates-image.png",
+    imageUrl: "../assets/carbohydrates-image.png",
     price: "600",
   },
 ];
@@ -72,7 +72,7 @@ const orders = [
 const Listings = () => {
   const { setShowListingModal } = useModal();
 
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState(listings);
 
   useEffect(() => {
     const fetchUserProducts = async () => {
@@ -146,28 +146,33 @@ const Listings = () => {
       <section className="grid sm:grid-cols-3 gap-5">
         <div className="col-span-2">
           {/* Listings */}
-
-          <div className="grid grid-cols-2 gap-2">
-            {listings.map((listing, index) => (
-              <div
-                key={index}
-                className="rounded-xl bg-white p-2 shadow_card relative overflow-hidden"
-              >
-                <button className="px-4 py-1 bg-black rounded-lg text-xs text-white absolute right-5 top-5 font-oswald hover:bg-white hover:text-black transition-all">
-                  Edit Listing
-                </button>
-                <img
-                  src={listing.image}
-                  alt={listing.title}
-                  className="w-full rounded-lg"
-                />
-                <div className="flex gap-11 max-sm:text-[12px] max-sm:py-1 py-3 justify-center bg-white absolute bottom-0 w-full">
-                  <p className="font-oswald">{listing.title}</p>
-                  <p className="font-oswald">#{listing.price}/KG</p>
+          {!(products.length > 0) ? (
+            <div className="w-full p-4 h-full shadow_card bg-white rounded-xl">
+              <p className="font-oswald">No product added yet!</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-2">
+              {products.map((listing, index) => (
+                <div
+                  key={index}
+                  className="rounded-xl bg-white p-2 shadow_card relative overflow-hidden"
+                >
+                  <button className="px-4 py-1 bg-black rounded-lg text-xs text-white absolute right-5 top-5 font-oswald hover:bg-white hover:text-black transition-all">
+                    Edit Listing
+                  </button>
+                  <img
+                    src={listing.imageUrl}
+                    alt={listing.name}
+                    className="w-full rounded-lg"
+                  />
+                  <div className="flex gap-11 max-sm:text-[12px] max-sm:py-1 py-3 justify-center bg-white absolute bottom-0 w-full">
+                    <p className="font-oswald">{listing.name}</p>
+                    <p className="font-oswald">#{listing.price}/KG</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Customers feedback */}
 
