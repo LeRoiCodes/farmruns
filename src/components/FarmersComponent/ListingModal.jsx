@@ -64,8 +64,8 @@ const ListingModal = () => {
             description: description,
             category: category.toLowerCase(),
             quantity: parseInt(quantity),
-            image:
-              "https://www.healthyeating.org/images/default-source/home-0.0/nutrition-topics-2.0/general-nutrition-wellness/2-2-2-3foodgroups_fruits_detailfeature.jpg?sfvrsn=64942d53_4",
+            imageUrl:
+              "https://cdn.britannica.com/17/196817-050-6A15DAC3/vegetables.jpg?w=400&h=300&c=crop",
           }),
         }
       );
